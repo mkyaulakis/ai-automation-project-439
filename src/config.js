@@ -39,3 +39,23 @@ export const SNIFF_LENGTH = 512;
 export const HASH_ALGORITHM = 'sha256';
 
 export const COPY_MARKERS = ['копия', 'copy', '-', '—'];
+
+export const CSV_DELIMITERS = [',', ';'];
+
+export const OUTPUT_FILES = {
+  registry: 'registry.csv',
+};
+
+export const REGISTRY_COLUMNS = [
+  'путь',
+  'имя',
+  'тип',
+  'размер',
+  'хеш',
+  'статус',
+  'основная копия',
+  'строк',
+  'колонки',
+];
+
+export const LIST_SEPARATOR = ', ';
