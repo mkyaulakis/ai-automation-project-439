@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Автоматизация разбора файлов компании",
   "type": "module",
+  "main": "src/index.js",
   "bin": {
     "file-automation": "bin/file-automation.js"
   },

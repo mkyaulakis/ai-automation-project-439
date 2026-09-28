@@ -1,5 +1,13 @@
-const runFiles = (folder, options) => {
-  console.log(`files: разбираю папку "${folder}", отчёты будут в "${options.out}"`);
+import listFiles from '../walk.js';
+
+const runFiles = (folder) => {
+  const files = listFiles(folder);
+  return {
+    files,
+    summary: {
+      total: files.length,
+    },
+  };
 };
 
 export default runFiles;
