@@ -59,3 +59,11 @@ export const REGISTRY_COLUMNS = [
 ];
 
 export const LIST_SEPARATOR = ', ';
+
+export const CONTACT_COLUMN_MAP = {
+  имя: ['имя', 'фио', 'name', 'full name', 'имя и фамилия'],
+  телефон: ['телефон', 'моб. телефон', 'мобильный телефон', 'тел.', 'phone', 'mobile'],
+  почта: ['почта', 'e-mail', 'email', 'mail', 'эл. почта', 'электронная почта'],
+};
+
+export const CONTACT_KEY_FIELDS = ['телефон', 'почта'];

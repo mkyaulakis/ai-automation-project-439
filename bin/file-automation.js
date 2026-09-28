@@ -4,7 +4,7 @@ import { Command } from 'commander';
 import { createRequire } from 'node:module';
 import runFiles from '../src/commands/files.js';
 import runContacts from '../src/commands/contacts.js';
-import formatFilesOutput from '../src/format.js';
+import { formatContactsOutput, formatFilesOutput } from '../src/format.js';
 import { DEFAULT_OUT_DIR } from '../src/config.js';
 
 const require = createRequire(import.meta.url);
@@ -42,7 +42,7 @@ program
   .argument('<папка>', 'папка с выгрузками контактов')
   .option('--out <папка>', 'папка для отчётов', DEFAULT_OUT_DIR)
   .action(handle((folder, options) => {
-    runContacts(folder, options);
+    console.log(formatContactsOutput(runContacts(folder, options.out)));
   }));
 
 if (process.argv.length <= 2) {

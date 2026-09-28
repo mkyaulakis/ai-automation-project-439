@@ -2,7 +2,7 @@ const pluralGroups = (count) => (
   count % 10 === 1 && count % 100 !== 11 ? 'группе' : 'группах'
 );
 
-const formatFilesOutput = ({ summary, outputs }) => {
+export const formatFilesOutput = ({ summary, outputs }) => {
   const { types, statuses } = summary;
   return [
     `Файлов найдено: ${summary.total}`,
@@ -13,4 +13,15 @@ const formatFilesOutput = ({ summary, outputs }) => {
   ].join('\n');
 };
 
-export default formatFilesOutput;
+const formatUnmatchedColumns = (exports) => {
+  const unmatched = exports.flatMap(({ source, unmatchedColumns }) => (
+    unmatchedColumns.map((column) => `${column} (${source})`)
+  ));
+  return unmatched.length === 0 ? [] : [`Колонки без соответствия: ${unmatched.join(', ')}`];
+};
+
+export const formatContactsOutput = ({ exports, summary }) => [
+  ...exports.map(({ source, records }) => `${source}: записей ${records.length}`),
+  `Выгрузок прочитано: ${summary.exports}, записей: ${summary.records}`,
+  ...formatUnmatchedColumns(exports),
+].join('\n');
