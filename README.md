@@ -23,9 +23,10 @@
 ```bash
 git clone https://github.com/mkyaulakis/ai-automation-project-439.git
 cd ai-automation-project-439
-npm install
-npm link
+make setup
 ```
+
+`make setup` ставит зависимости (`npm ci`) и выполняет `npm link`.
 
 После `npm link` программа доступна в терминале под именем `file-automation`.
 
@@ -70,7 +71,7 @@ $ file-automation files ./company-files --out ./out
 Проверка кода линтером:
 
 ```bash
-npm run lint
+make lint
 ```
 
 ---
