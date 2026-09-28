@@ -45,7 +45,11 @@ export const CSV_DELIMITERS = [',', ';'];
 export const OUTPUT_FILES = {
   registry: 'registry.csv',
   contacts: 'contacts.csv',
+  report: 'report.txt',
+  reportJson: 'report.json',
 };
+
+export const JSON_INDENT = 2;
 
 export const CONTACTS_COLUMNS = ['имя', 'телефон', 'почта', 'источники'];
 

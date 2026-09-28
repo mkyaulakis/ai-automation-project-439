@@ -76,12 +76,22 @@ const collectContacts = (files) => {
   const exports = files.filter(isContactExport).map(readExport);
   const records = exports.flatMap((item) => item.records);
   const withKey = records.filter((record) => contactKey(record) !== undefined);
+  const contacts = mergeContacts(withKey);
+  const rejectedValues = records.flatMap((record) => record.rejectedValues);
+  const withoutKey = records.filter((record) => contactKey(record) === undefined);
   return {
     exports,
     records,
-    contacts: mergeContacts(withKey),
-    rejectedValues: records.flatMap((record) => record.rejectedValues),
-    withoutKey: records.filter((record) => contactKey(record) === undefined),
+    contacts,
+    rejectedValues,
+    withoutKey,
+    summary: {
+      exports: exports.length,
+      records: records.length,
+      unique: contacts.length,
+      rejectedValues: rejectedValues.length,
+      withoutKey: withoutKey.length,
+    },
   };
 };
 

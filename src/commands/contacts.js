@@ -1,7 +1,6 @@
-import analyzeFiles from '../analyzeFiles.js';
-import collectContacts from '../contacts.js';
 import writeOutput from '../output.js';
 import { toCsv } from '../csv.js';
+import { analyzeFolder, writeReports } from '../analyzeFolder.js';
 import { CONTACTS_COLUMNS, OUTPUT_FILES, SOURCES_SEPARATOR } from '../config.js';
 
 const buildContactsTable = (contacts) => toCsv(
@@ -10,18 +9,14 @@ const buildContactsTable = (contacts) => toCsv(
 );
 
 const runContacts = (folder, outDir) => {
-  const result = collectContacts(analyzeFiles(folder).files);
-  const tablePath = writeOutput(folder, outDir, OUTPUT_FILES.contacts, buildContactsTable(result.contacts));
+  const analysis = analyzeFolder(folder);
+  const table = buildContactsTable(analysis.contacts.contacts);
   return {
-    ...result,
-    summary: {
-      exports: result.exports.length,
-      records: result.records.length,
-      unique: result.contacts.length,
-      rejectedValues: result.rejectedValues.length,
-      withoutKey: result.withoutKey.length,
+    ...analysis,
+    outputs: {
+      contacts: writeOutput(folder, outDir, OUTPUT_FILES.contacts, table),
+      ...writeReports(folder, outDir, analysis),
     },
-    outputs: { contacts: tablePath },
   };
 };
 

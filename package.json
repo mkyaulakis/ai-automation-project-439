@@ -14,6 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "as-table": "^1.0.55",
     "commander": "^12.1.0"
   },
   "devDependencies": {
