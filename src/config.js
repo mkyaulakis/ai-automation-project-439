@@ -35,3 +35,7 @@ export const SYSTEM_FILES = ['.ds_store', 'thumbs.db', 'desktop.ini'];
 export const TEXT_CONTROL_BYTES = [0x09, 0x0a, 0x0d];
 
 export const SNIFF_LENGTH = 512;
+
+export const HASH_ALGORITHM = 'sha256';
+
+export const COPY_MARKERS = ['копия', 'copy', '-', '—'];

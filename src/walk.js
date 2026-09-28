@@ -1,12 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-
-const comparePaths = (a, b) => {
-  if (a.path === b.path) {
-    return 0;
-  }
-  return a.path < b.path ? -1 : 1;
-};
+import { comparePaths } from './paths.js';
 
 const listFiles = (dir) => fs.readdirSync(dir, { withFileTypes: true })
   .filter((entry) => entry.isFile())
@@ -19,6 +13,6 @@ const listFiles = (dir) => fs.readdirSync(dir, { withFileTypes: true })
       size: fs.statSync(filePath).size,
     };
   })
-  .sort(comparePaths);
+  .sort((a, b) => comparePaths(a.path, b.path));
 
 export default listFiles;
