@@ -18,16 +18,40 @@
 
 ## Установка
 
-<!-- Опишите установку: клонирование, зависимости, переменные окружения -->
+Нужны Node.js 20+ и Git.
 
 ```bash
 git clone https://github.com/mkyaulakis/ai-automation-project-439.git
 cd ai-automation-project-439
+npm install
+npm link
+```
+
+После `npm link` программа доступна в терминале под именем `file-automation`.
+
+Набор тестовых данных (не хранится в репозитории):
+
+```bash
+git clone --depth 1 https://github.com/hexlet-components/data-company-files.git
+mv data-company-files/company-files company-files
+rm -rf data-company-files
 ```
 
 ## Использование
 
-<!-- Добавьте примеры запуска и запись asciinema — именно это смотрит работодатель -->
+```bash
+file-automation                                   # справка
+file-automation files <папка> [--out <папка>]     # реестр документов
+file-automation contacts <папка> [--out <папка>]  # чистая таблица контактов
+```
+
+Значение `--out` по умолчанию — `./out`.
+
+Проверка кода линтером:
+
+```bash
+npm run lint
+```
 
 ---
 

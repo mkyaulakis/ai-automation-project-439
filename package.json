@@ -1,0 +1,22 @@
+{
+  "name": "ai-automation-project-439",
+  "version": "1.0.0",
+  "description": "Автоматизация разбора файлов компании",
+  "type": "module",
+  "bin": {
+    "file-automation": "bin/file-automation.js"
+  },
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^12.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.11.0"
+  }
+}
