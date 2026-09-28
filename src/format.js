@@ -23,5 +23,6 @@ const formatUnmatchedColumns = (exports) => {
 export const formatContactsOutput = ({ exports, summary }) => [
   ...exports.map(({ source, records }) => `${source}: записей ${records.length}`),
   `Выгрузок прочитано: ${summary.exports}, записей: ${summary.records}`,
+  `Отбраковано значений: ${summary.rejectedValues}, записей без телефона и почты: ${summary.withoutKey}`,
   ...formatUnmatchedColumns(exports),
 ].join('\n');

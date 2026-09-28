@@ -67,3 +67,12 @@ export const CONTACT_COLUMN_MAP = {
 };
 
 export const CONTACT_KEY_FIELDS = ['телефон', 'почта'];
+
+export const EMPTY_PLACEHOLDERS = ['-', '—', '–', 'null', 'none', 'undefined'];
+
+export const PHONE = {
+  digits: '0123456789',
+  length: 11,
+  countryCode: '7',
+  trunkPrefixes: ['7', '8'],
+};
