@@ -44,7 +44,12 @@ export const CSV_DELIMITERS = [',', ';'];
 
 export const OUTPUT_FILES = {
   registry: 'registry.csv',
+  contacts: 'contacts.csv',
 };
+
+export const CONTACTS_COLUMNS = ['имя', 'телефон', 'почта', 'источники'];
+
+export const SOURCES_SEPARATOR = '; ';
 
 export const REGISTRY_COLUMNS = [
   'путь',

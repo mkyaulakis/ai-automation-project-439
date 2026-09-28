@@ -44,16 +44,44 @@ const readExport = (file) => ({
   unmatchedColumns: file.columns.filter((column) => fieldForColumn(column) === undefined),
 });
 
-const hasKey = (record) => CONTACT_KEY_FIELDS.some((field) => record[field] !== '');
+const contactKey = (record) => CONTACT_KEY_FIELDS
+  .map((field) => record[field])
+  .find((value) => value !== '');
+
+const mergeContacts = (records) => {
+  const byKey = new Map();
+  records.forEach((record) => {
+    const key = contactKey(record);
+    const known = byKey.get(key);
+    if (known === undefined) {
+      byKey.set(key, {
+        имя: record.имя,
+        телефон: record.телефон,
+        почта: record.почта,
+        источники: [record.источник],
+      });
+      return;
+    }
+    known.имя = known.имя || record.имя;
+    known.телефон = known.телефон || record.телефон;
+    known.почта = known.почта || record.почта;
+    if (!known.источники.includes(record.источник)) {
+      known.источники.push(record.источник);
+    }
+  });
+  return [...byKey.values()];
+};
 
 const collectContacts = (files) => {
   const exports = files.filter(isContactExport).map(readExport);
   const records = exports.flatMap((item) => item.records);
+  const withKey = records.filter((record) => contactKey(record) !== undefined);
   return {
     exports,
     records,
+    contacts: mergeContacts(withKey),
     rejectedValues: records.flatMap((record) => record.rejectedValues),
-    withoutKey: records.filter((record) => !hasKey(record)),
+    withoutKey: records.filter((record) => contactKey(record) === undefined),
   };
 };
 

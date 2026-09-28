@@ -20,9 +20,11 @@ const formatUnmatchedColumns = (exports) => {
   return unmatched.length === 0 ? [] : [`Колонки без соответствия: ${unmatched.join(', ')}`];
 };
 
-export const formatContactsOutput = ({ exports, summary }) => [
+export const formatContactsOutput = ({ exports, summary, outputs }) => [
   ...exports.map(({ source, records }) => `${source}: записей ${records.length}`),
   `Выгрузок прочитано: ${summary.exports}, записей: ${summary.records}`,
+  `Уникальных контактов: ${summary.unique}`,
   `Отбраковано значений: ${summary.rejectedValues}, записей без телефона и почты: ${summary.withoutKey}`,
   ...formatUnmatchedColumns(exports),
+  `Таблица: ${outputs.contacts}`,
 ].join('\n');
